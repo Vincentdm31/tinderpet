@@ -5,5 +5,11 @@
     "types": ["webpack-env", "node"]
   },
   "exclude": ["**/*.spec.ts", "**/*.spec.tsx"],
-  "include": ["**/*.ts", "**/*.tsx", "**/*.vue"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "src/store/index.ts",
+    "src/main.ts"
+  ]
 }
