@@ -50,6 +50,94 @@
           }
         }
       }
+    },
+    "front": {
+      "projectType": "application",
+      "root": "apps/front",
+      "sourceRoot": "apps/front/src",
+      "targets": {
+        "build": {
+          "executor": "@nx-plus/vue:browser",
+          "options": {
+            "dest": "dist/apps/front",
+            "index": "apps/front/public/index.html",
+            "main": "apps/front/src/main.ts",
+            "tsConfig": "apps/front/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "mode": "production",
+              "filenameHashing": true,
+              "productionSourceMap": true,
+              "css": {
+                "extract": true,
+                "sourceMap": false
+              }
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nx-plus/vue:dev-server",
+          "options": {
+            "browserTarget": "front:build",
+            "devServer": {
+              "proxy": {
+                "^/api": {
+                  "target": "http://10.31.35.115:3333",
+                  "changeOrigin": true,
+                  "secure": false
+                }
+              }
+            }
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "front:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/front/**/*.{ts,tsx,vue}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/front"],
+          "options": {
+            "jestConfig": "apps/front/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "front-e2e": {
+      "root": "apps/front-e2e",
+      "sourceRoot": "apps/front-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/front-e2e/cypress.json",
+            "devServerTarget": "front:serve",
+            "tsConfig": "apps/front-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "front:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/front-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
     }
   },
   "cli": {
