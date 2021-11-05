@@ -22,7 +22,6 @@ export default new Vuex.Store({
         })
         .finally(() => {
           this.state.isLoading = false;
-          console.log(this.state.data);
         });
     },
     getType({ state }) {
@@ -47,7 +46,7 @@ export default new Vuex.Store({
       this.state.isLoading = true;
       return Vue.axios
         .post('/api/pet/new', {
-          test: pet,
+          pet,
         })
         .then((res) => {
           console.log('ok', res);
@@ -58,6 +57,11 @@ export default new Vuex.Store({
         .finally(() => {
           this.state.isLoading = false;
         });
+    },
+    delPet({ state }, id) {
+      this.state.data = this.state.data.filter(function (obj: any) {
+        return obj.id !== id;
+      });
     },
   },
 });

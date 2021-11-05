@@ -20,7 +20,7 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ '../views/Insert.vue'),
   },
   {
-    path: '/pet/edit/:id/:name',
+    path: '/pet/edit/:id',
     name: 'Edit',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

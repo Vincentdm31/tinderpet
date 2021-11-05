@@ -1,48 +1,85 @@
 <template>
-  <div class="about">
-    <h1>Créer un animal</h1>
-    <div class="d-flex fx-center v-center container fx-col" style="width: 30%">
+  <div class="h100 h100">
+    <div
+      class="d-flex fx-center v-center container fx-col h100"
+      style="width: 30%"
+    >
       <div class="form-field inline">
-        <label for="name">Name</label>
-        <input v-model="firstName" type="text" class="form-control rounded-1" />
+        <input
+          v-model="firstName"
+          type="text"
+          placeholder="Name"
+          class="form-control rounded-1"
+        />
       </div>
       <div class="form-field inline">
-        <label for="name">Lastname</label>
-        <input v-model="lastName" type="text" class="form-control rounded-1" />
+        <input
+          v-model="lastName"
+          type="text"
+          placeholder="Lastname"
+          class="form-control rounded-1"
+        />
+      </div>
+      <VueCtkDateTimePicker
+        :label="'Birthdate'"
+        v-model="birthDate"
+        :format="'YYYY-MM-DD hh:mm'"
+        style="background: transparent !important"
+      />
+      <div class="form-field inline">
+        <input
+          v-model="summary"
+          type="text"
+          placeholder="Summary"
+          class="form-control rounded-1"
+        />
       </div>
       <div class="form-field inline">
-        <label for="name">Birthdate</label>
-        <input v-model="birthDate" type="text" class="form-control rounded-1" />
-      </div>
-      <div class="form-field inline">
-        <label for="name">Description</label>
-        <input v-model="summary" type="text" class="form-control rounded-1" />
+        <input
+          v-model="avatarPictureUrl"
+          type="text"
+          placeholder="Image link"
+          class="form-control rounded-1"
+        />
       </div>
       <div class="form-field d-flex fx-row">
-        <label class="txt-center mr-3" for="select">Type</label>
-        <select class="form-control rounded-1" v-model="category">
-          <option v-for="type in petType" :key="type.id">{{ type }}</option>
+        <select
+          required
+          class="form-control rounded-1"
+          placeholder="Category"
+          v-model="category"
+        >
+          <option value="category" disabled hidden>Category</option>
+          <option :name="i" v-for="(type, i) in petType" :key="type.id">
+            {{ type }}
+          </option>
         </select>
       </div>
+      <button
+        v-if="category != 'category'"
+        @click="newPet()"
+        class="btn gradient txt-white d-block mx-auto"
+      >
+        Envoyer
+      </button>
     </div>
-    <button @click="newPet()" class="btn blue d-block mx-auto">Envoyer</button>
   </div>
 </template>
 <script>
 import { mapActions, mapState } from 'vuex';
-
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+import Vue from 'vue';
+Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
 export default {
   data() {
     return {
       firstName: '',
       lastName: '',
-      birthDate: '1940-01-01T00:00:00.000Z',
-      avatarPictureUrl:
-        'https://lezebre.lu/images/detailed/16/22058-bugs-bunny.png',
-      coverPictureUrl:
-        'https://images2.fanpop.com/image/photos/10200000/Bugs-Bunny-bugs-bunny-10229071-600-811.jpg',
+      birthDate: '2021-11-02 10:10',
+      avatarPictureUrl: 'https://picsum.photos/350/250',
       summary: '',
-      category: null,
+      category: 'category',
     };
   },
   mounted() {
@@ -59,12 +96,13 @@ export default {
         lastName: this.lastName,
         birthDate: this.birthDate,
         avatarPictureUrl: this.avatarPictureUrl,
-        coverPictureUrl: this.coverPictureUrl,
+        coverPictureUrl: this.avatarPictureUrl,
         summary: this.summary,
         type: this.category,
       };
       this.insertNewPet(pet);
       this.getAll();
+      this.$router.push('/');
     },
   },
 };

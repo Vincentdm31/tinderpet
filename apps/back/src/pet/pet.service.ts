@@ -1,40 +1,64 @@
 import { Injectable } from '@nestjs/common';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 
 @Injectable()
 export class PetService {
   api_url = 'https://meetapet-api.herokuapp.com/api/';
-  getAll(): any {
-    return axios.get(this.api_url + 'pets').then((pet) => pet.data);
+  async getAll(): Promise<Axios> {
+    return await axios
+      .get(this.api_url + 'pets', {
+        params: {
+          size: 100,
+        },
+      })
+      .then((pet) => pet.data)
+      .catch((err) => console.log(err));
   }
-  getPetType(): any {
-    return axios.get(this.api_url + 'pet-types').then((pet) => pet.data);
+  async getPetType(): Promise<any> {
+    return await axios.get(this.api_url + 'pet-types').then((pet) => pet.data);
   }
-  newPet(pet) {
-    console.log('SERVICE', pet);
-    return axios
-      .post(this.api_url + 'pets', {
+  async newPet(data) {
+    const pet = data.pet;
+    return await axios
+      .post(`${this.api_url}pets`, {
         firstName: pet.firstName,
         lastName: pet.lastName,
-        birthDate: '1940-01-01T00:00:00.000Z',
+        birthDate: pet.birthDate,
         type: pet.type,
-        avatarPictureUrl:
-          'https://m.media-amazon.com/images/S/abs-image-upload-na/b/AmazonStores/ATVPDKIKX0DER/eca2784c2a5265feaae78e48f3a4e4a8.w800.h800.jpg',
-        coverPictureUrl:
-          'https://m.media-amazon.com/images/S/abs-image-upload-na/b/AmazonStores/ATVPDKIKX0DER/eca2784c2a5265feaae78e48f3a4e4a8.w800.h800.jpg',
+        avatarPictureUrl: pet.avatarPictureUrl,
+        coverPictureUrl: pet.avatarPictureUrl,
         summary: pet.summary,
       })
-      .then((item) => console.log('GG INSERT'))
+      .then((item) => console.log('Pet inserted'))
       .catch((err) => console.log('FDP DERREUR'));
   }
-  editPet(pet) {
-    console.log('SERVICE', pet);
-    return axios
-      .put(this.api_url + 'pets/' + pet.id, {
-        id: pet.id,
-        firstName: pet.firstName,
-      })
-      .then((res) => console.log('GG', res))
+  async editPet(pet) {
+    return await axios
+      .put(`${this.api_url}pets/${pet.id}`, pet)
+      .then((res) => console.log('Pet edited'))
       .catch((err) => console.log('ERR', err));
+  }
+  async deletePet(id) {
+    return await axios
+      .delete(`${this.api_url}pets/${id}`)
+      .then((res) => console.log('Pet deleted'))
+      .catch((err) => console.log('ERR', err));
+  }
+  async getPetById(id) {
+    return await axios.get(`${this.api_url}pets/${id}`).then((pet) => pet.data);
+  }
+  async deleteAllPets() {
+    return await axios
+      .get(`${this.api_url}pets`, {
+        params: {
+          size: 100,
+        },
+      })
+      .then((pet) => {
+        pet.data.forEach((el) => {
+          this.deletePet(el.id);
+        });
+      })
+      .catch((err) => console.log(err));
   }
 }
