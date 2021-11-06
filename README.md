@@ -11,7 +11,21 @@ Run
 ### Install
 
 ```shell
+git clone git@github.com:Vincentdm31/tinderpet.git
+```
 
-npm i lala
+```shell
+cd tinderpet/
+```
 
+```shell
+npm i
+```
+
+```shell
+nx serve back
+```
+
+```shell
+nx serve front
 ```
