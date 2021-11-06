@@ -126,7 +126,7 @@ export default {
       };
       this.insertNewPet(pet);
       this.getAll();
-      this.$router.push('/');
+      this.$router.push('/pets');
     },
   },
 

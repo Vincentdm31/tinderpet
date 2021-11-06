@@ -9,7 +9,7 @@
         </div>
       </nav>
     </div>
-    <div class="fab" id="fab-example" data-ax="fab">
+    <div v-show="pets" class="fab" id="fab-example" data-ax="fab">
       <!-- Here is the fab-trigger -->
       <button class="btn circle white large fab-trigger">
         <i class="fas fa-fire txt-amaranth" aria-hidden="true"></i>
