@@ -1,5 +1,8 @@
 <template>
-  <div class="gradient">
+  <div class="gradient app">
+    <div v-if="data.length == 0" class="d-flex fx-center vcenter h100">
+      <p class="txt-white">No pets available</p>
+    </div>
     <div class="container grix xs1 sm2 md3 lg4 gutter-xs7 mt-5">
       <div v-if="isLoading">
         <div class="spinner txt-blue">
@@ -93,17 +96,6 @@ export default Vue.extend({
         .then((res) => {
           console.log('ok', res);
           this.delPet(id);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    },
-    deleteAllPets() {
-      return Vue.axios
-        .get('/api/pet/delete/all')
-        .then((res) => {
-          console.log('ok', res);
-          this.getAll();
         })
         .catch((err) => {
           console.error(err);

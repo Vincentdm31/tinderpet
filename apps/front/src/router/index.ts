@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import Pets from '../views/Pets.vue';
+import Insert from '../views/Insert.vue';
 
 Vue.use(VueRouter);
 
@@ -12,23 +13,21 @@ const routes: Array<RouteConfig> = [
     component: Home,
   },
   {
-    path: '/pets/insert',
-    name: 'insert',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "insert" */ '../views/Insert.vue'),
-  },
-
-  {
     path: '/pets',
     name: 'pets',
     component: Pets,
   },
   {
+    path: '/pets/insert',
+    name: 'insert',
+    component: Insert,
+  },
+  {
     path: '/pets/edit/:id',
     name: 'Edit',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Edit.vue'),
   },
 ];

@@ -11,7 +11,7 @@ export default new Vuex.Store({
   },
   actions: {
     getAll({ state }) {
-      this.state.isLoading = true;
+      state.isLoading = true;
       return Vue.axios
         .get('/api/pet')
         .then((res) => {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
         });
     },
     getType({ state }) {
-      this.state.isLoading = true;
+      state.isLoading = true;
       return Vue.axios
         .get('/api/pet/pet-types')
         .then((res) => {
@@ -43,7 +43,7 @@ export default new Vuex.Store({
         });
     },
     insertNewPet({ state }, pet) {
-      this.state.isLoading = true;
+      state.isLoading = true;
       return Vue.axios
         .post('/api/pet/new', {
           pet,
@@ -59,7 +59,9 @@ export default new Vuex.Store({
         });
     },
     delPet({ state }, id) {
-      this.state.data = this.state.data.filter(function (obj: any) {
+      state.data = this.state.data.filter(function (
+        obj: Record<string, unknown>
+      ) {
         return obj.id !== id;
       });
     },

@@ -16,11 +16,12 @@
       </button>
       <!-- Here is the fab-menu -->
       <div class="fab-menu">
-        <router-link class="white btn circle fab-item" to="/pets/insert"
+        <router-link class="white btn circle mb-3 fab-item" to="/pets/insert"
           ><i class="fas fa-plus txt-red"
         /></router-link>
         <button
-          class="btn circle mb-4 mt-2 fab-item red dark-2"
+          v-show="data.length != 0"
+          class="btn circle mb-3 fab-item red dark-2"
           @click="deleteAllPets()"
         >
           <i class="fas fa-trash txt-white" />
@@ -39,13 +40,24 @@ export default Vue.extend({
     this.getAll();
   },
   computed: {
-    ...mapState(['data', 'isLoading']),
+    ...mapState(['data']),
     pets() {
       return this.$route.name === 'pets';
     },
   },
   methods: {
     ...mapActions(['getAll', 'delPet']),
+    deleteAllPets() {
+      return Vue.axios
+        .get('/api/pet/delete/all')
+        .then((res) => {
+          console.log('ok', res);
+          this.getAll();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
   },
 });
 </script>

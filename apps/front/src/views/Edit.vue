@@ -147,7 +147,7 @@ export default {
         this.editPet(id);
       }
     },
-    editPet(id) {
+    editPet() {
       return axios
         .post(`/api/pet/editPet`, {
           id: this.pet.id,
@@ -159,7 +159,10 @@ export default {
           coverPictureUrl: this.pet.coverPictureUrl,
           summary: this.pet.summary,
         })
-        .then((res) => this.$router.push('/pets'))
+        .then((res) => {
+          console.log(res);
+          this.$router.push('/pets');
+        })
         .catch((err) => console.log(err));
     },
     getPet(id) {
