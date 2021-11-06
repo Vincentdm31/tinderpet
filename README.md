@@ -23,3 +23,24 @@ nx serve back
 ```shell
 nx serve front
 ```
+
+## Configure workspace
+
+```json
+
+"serve": {
+          "executor": "@nx-plus/vue:dev-server",
+          "options": {
+            "browserTarget": "front:build",
+            "devServer": {
+              "proxy": {
+                "^/api": {
+                  "target": "http://<your-ip>:3333",
+                  "changeOrigin": true,
+                  "secure": false
+                }
+              }
+            }
+          },
+
+```
