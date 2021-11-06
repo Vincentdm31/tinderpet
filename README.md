@@ -10,11 +10,8 @@ Run
 
 ### Install
 
-test
+```shell
 
-{::nomarkdown}
+npm i lala
 
-<!-- HTML CODE-->
-<p>Totot</p>
-
-{:/}
+```
