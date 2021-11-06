@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="h100 w100 p-2" style="height: 94vh">
+  <div class="p-2" style="height: 94vh">
     <div
       class="container d-flex fx-center fx-col v-center h100"
       style="width: 30%"

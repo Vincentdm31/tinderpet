@@ -17,4 +17,7 @@
 .gradient {
   background-image: linear-gradient(151deg, #04030f 26%, #05031a 100%);
 }
+.blue-txt {
+  color: #030322;
+}
 </style>

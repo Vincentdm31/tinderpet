@@ -1,5 +1,7 @@
 <template>
   <div class="pt-4" style="height: 94vh">
+    <h1 class="txt-center font-s12 blue-txt">Tinderpet</h1>
+    <img src="../assets/cat.png" class="responsive-media d-block mx-auto" />
     <div class="grix xs2 gutter-xs5">
       <router-link class="gradient btn circle ml-auto" to="/insert"
         ><i class="fas fa-plus txt-white"
