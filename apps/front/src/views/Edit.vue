@@ -4,6 +4,15 @@
       class="container d-flex fx-center fx-col v-center h100"
       style="width: 30%"
     >
+      <p v-if="errors.length" class="txt-red">
+        <b>Please correct the following error(s):</b>
+      </p>
+
+      <ul>
+        <li class="txt-red" v-for="error in errors" :key="error.id">
+          {{ error }}
+        </li>
+      </ul>
       <div class="form-field inline">
         <input
           type="text"
@@ -68,7 +77,7 @@
         </select>
       </div>
       <div>
-        <button class="btn gradient d-block mx-auto" @click="editPet(id)">
+        <button class="btn gradient d-block mx-auto" @click="checkForm(id)">
           <i class="fas fa-check txt-white" />
         </button>
       </div>
@@ -88,6 +97,7 @@ export default {
     return {
       id: this.$route.params.id,
       pet: {},
+      errors: [],
     };
   },
   mounted() {
@@ -99,8 +109,22 @@ export default {
   },
   methods: {
     ...mapActions(['getType']),
-    editPet(id) {
+    checkForm(id) {
+      this.errors = [];
       console.log(this.pet);
+      const data = Object.keys(this.pet).map((key) => [key, this.pet[key]]);
+      data.map((e) => {
+        if (e[1].length == 0 || (e[0] == 'category' && e[1] == 'category')) {
+          this.errors.push(e[0]);
+        }
+      });
+      console.log('errors', this.errors);
+
+      if (this.errors.length == 0) {
+        this.editPet(id);
+      }
+    },
+    editPet(id) {
       return axios
         .post(`/api/pet/editPet`, {
           id: this.pet.id,
@@ -119,7 +143,6 @@ export default {
       return axios
         .get(`/api/pet/${id}`)
         .then((res) => {
-          console.log('getPet EDIT', res.data);
           this.pet = res.data;
         })
         .catch((err) => console.log(err));

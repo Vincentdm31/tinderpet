@@ -4,7 +4,13 @@
       class="d-flex fx-center v-center container fx-col h100"
       style="width: 30%"
     >
-      <div class="form-field inline">
+      <p v-if="errors.length" class="txt-red">
+    <b>Please correct the following error(s):</b>
+    <ul>
+      <li v-for="error in errors" :key="error.id">{{ error }}</li>
+    </ul>
+  </p>
+      <div class="form-field inline d-flex fx-col">
         <input
           v-model="firstName"
           type="text"
@@ -12,7 +18,7 @@
           class="form-control rounded-1"
         />
       </div>
-      <div class="form-field inline">
+      <div class="form-field inline d-flex fx-col">
         <input
           v-model="lastName"
           type="text"
@@ -56,8 +62,8 @@
         </select>
       </div>
       <button
-        v-if="category != 'category'"
-        @click="newPet()"
+        
+        @click="checkForm()"
         class="btn gradient txt-white d-block mx-auto"
       >
         Envoyer
@@ -80,6 +86,7 @@ export default {
       avatarPictureUrl: 'https://picsum.photos/350/250',
       summary: '',
       category: 'category',
+      errors: []
     };
   },
   mounted() {
@@ -90,6 +97,20 @@ export default {
   },
   methods: {
     ...mapActions(['getAll', 'getType', 'insertNewPet']),
+    checkForm(){
+      this.errors = [];
+      const data = Object.keys(this.$data).map((key) => [(key), this.$data[key]]);
+      data.splice(data.length -1, 1)
+      data.map(e => {
+          if(e[1].length == 0  || (e[0] == "category" && e[1] == "category")){
+            this.errors.push(e[0])
+          }
+      })
+
+       if(this.errors.length == 0){
+         this.newPet()
+       }
+    },
     newPet() {
       const pet = {
         firstName: this.firstName,
@@ -105,5 +126,6 @@ export default {
       this.$router.push('/');
     },
   },
+
 };
 </script>
