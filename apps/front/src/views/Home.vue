@@ -1,5 +1,5 @@
 <template>
-  <div class="gradient d-flex fx-col fx-center vcenter" style="height: 94vh">
+  <div class="gradient d-flex fx-col fx-center vcenter app">
     <h1 class="mt-0 txt-white" style="font-size: 10rem">Tinderpet</h1>
     <img src="../assets/flamme.png" class="responsive-media my-5" />
     <router-link

@@ -1,16 +1,16 @@
 <template lang="">
-  <div class="gradient h100" style="padding-top: 4rem">
+  <div class="gradient app">
     <div
       class="container d-flex fx-center fx-col v-center h100 txt-white"
-      style="width: 30%"
+      style="width: 50%"
     >
       <img
         src="../assets/flamme.png"
-        class="responsive-media mb-5 d-block mx-auto"
-        style="max-width: 20%"
+        class="responsive-media mb-5 d-block mx-auto mt-5"
+        style="max-width: 7%"
       />
 
-      <h1 class="title">Edition_</h1>
+      <h1 class="title txt-center">Edition_</h1>
       <p v-if="errors.length" class="txt-white">
         <b>Please correct the following error(s):</b>
       </p>

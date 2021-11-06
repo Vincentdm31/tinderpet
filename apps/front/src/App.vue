@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="h100">
+  <div id="app" class="app">
     <div class="navbar-fixed">
       <nav class="navbar shadow-1 white">
         <div class="navbar-menu mx-auto txt-grey txt-light-4 font-s5">
@@ -8,6 +8,24 @@
           /></router-link>
         </div>
       </nav>
+    </div>
+    <div class="fab" id="fab-example" data-ax="fab">
+      <!-- Here is the fab-trigger -->
+      <button class="btn circle white large fab-trigger">
+        <i class="fas fa-fire txt-amaranth" aria-hidden="true"></i>
+      </button>
+      <!-- Here is the fab-menu -->
+      <div class="fab-menu">
+        <router-link class="white btn circle fab-item" to="/pets/insert"
+          ><i class="fas fa-plus txt-red"
+        /></router-link>
+        <button
+          class="btn circle mb-4 mt-2 fab-item red dark-2"
+          @click="deleteAllPets()"
+        >
+          <i class="fas fa-trash txt-white" />
+        </button>
+      </div>
     </div>
     <router-view />
   </div>
@@ -22,6 +40,9 @@ export default Vue.extend({
   },
   computed: {
     ...mapState(['data', 'isLoading']),
+    pets() {
+      return this.$route.name === 'pets';
+    },
   },
   methods: {
     ...mapActions(['getAll', 'delPet']),
@@ -65,5 +86,9 @@ body {
   text-transform: uppercase;
   letter-spacing: 30px;
   margin-bottom: 10%;
+}
+
+.app {
+  height: calc(100vh - 3.5rem);
 }
 </style>

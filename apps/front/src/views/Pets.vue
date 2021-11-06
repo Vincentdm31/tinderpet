@@ -1,13 +1,5 @@
 <template>
-  <div class="gradient py-5" style="height: fit-content; padding-top: 4rem">
-    <div class="grix xs2 gutter-xs5">
-      <router-link class="gradient btn circle ml-auto" to="/pets/insert"
-        ><i class="fas fa-plus txt-white"
-      /></router-link>
-      <button class="red dark-4 btn circle" @click="deleteAllPets()">
-        <i class="fas fa-trash txt-white" />
-      </button>
-    </div>
+  <div class="gradient">
     <div class="container grix xs1 sm2 md3 lg4 gutter-xs7 mt-5">
       <div v-if="isLoading">
         <div class="spinner txt-blue">
@@ -25,7 +17,15 @@
       </div>
       <div
         v-else
-        class="card grey light-4 shadow-2 vself-stretch rounded-tl4 rounded-br4"
+        class="
+          card
+          hoverable-2
+          grey
+          light-4
+          shadow-2
+          vself-stretch
+          rounded-tl4 rounded-br4
+        "
         v-for="item in data"
         :key="item.id"
       >
@@ -112,3 +112,10 @@ export default Vue.extend({
   },
 });
 </script>
+<style lang="scss">
+#fab-example {
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+}
+</style>

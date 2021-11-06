@@ -1,5 +1,5 @@
 <template>
-  <div class="gradient" style="height: 94vh; padding-top: 4rem">
+  <div class="gradient app">
     <div
       class="d-flex fx-center v-center container fx-col h100 txt-white"
       style="width: 30%"
