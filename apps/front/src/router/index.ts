@@ -11,22 +11,28 @@ const routes: Array<RouteConfig> = [
     component: Home,
   },
   {
-    path: '/insert',
-    name: 'About',
+    path: '/pets/insert',
+    name: 'insert',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Insert.vue'),
+      import(/* webpackChunkName: "insert" */ '../views/Insert.vue'),
+  },
+
+  {
+    path: '/pets',
+    name: 'insert',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "insert" */ '../views/Pets.vue'),
   },
   {
-    path: '/pet/edit/:id',
+    path: '/pets/edit/:id',
     name: 'Edit',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Edit.vue'),
+    component: () => import(/* webpackChunkName: "edit" */ '../views/Edit.vue'),
   },
 ];
 

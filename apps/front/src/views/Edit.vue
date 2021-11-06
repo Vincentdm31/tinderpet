@@ -1,15 +1,22 @@
 <template lang="">
-  <div class="p-2" style="height: 94vh">
+  <div class="gradient h100" style="padding-top: 4rem">
     <div
-      class="container d-flex fx-center fx-col v-center h100"
+      class="container d-flex fx-center fx-col v-center h100 txt-white"
       style="width: 30%"
     >
-      <p v-if="errors.length" class="txt-red">
+      <img
+        src="../assets/flamme.png"
+        class="responsive-media mb-5 d-block mx-auto"
+        style="max-width: 20%"
+      />
+
+      <h1 class="title">Edition_</h1>
+      <p v-if="errors.length" class="txt-white">
         <b>Please correct the following error(s):</b>
       </p>
 
       <ul>
-        <li class="txt-red" v-for="error in errors" :key="error.id">
+        <li class="txt-white" v-for="error in errors" :key="error.id">
           {{ error }}
         </li>
       </ul>
@@ -33,7 +40,8 @@
       </div>
       <VueCtkDateTimePicker
         :label="pet.birthDate"
-        :color="'white'"
+        :color="'#EC4A79'"
+        :button-color="'#EC4A79'"
         v-model="pet.birthDate"
         :format="'YYYY-MM-DD hh:mm'"
       />
@@ -67,7 +75,7 @@
       <div class="form-field d-flex fx-row">
         <select
           required
-          class="form-control rounded-1"
+          class="form-control rounded-1 select"
           placeholder="Category"
           v-model="pet.type"
         >
@@ -76,11 +84,21 @@
           </option>
         </select>
       </div>
-      <div>
-        <button class="btn gradient d-block mx-auto" @click="checkForm(id)">
-          <i class="fas fa-check txt-white" />
-        </button>
-      </div>
+      <button
+        class="
+          btn
+          gradient
+          d-block
+          mx-auto
+          mt-5
+          mb-2
+          bd-white bd-1 bd-solid
+          rounded-1
+        "
+        @click="checkForm(id)"
+      >
+        <i class="fas fa-check txt-white" />
+      </button>
     </div>
   </div>
 </template>
@@ -113,8 +131,13 @@ export default {
       this.errors = [];
       console.log(this.pet);
       const data = Object.keys(this.pet).map((key) => [key, this.pet[key]]);
+      console.log(data);
       data.map((e) => {
-        if (e[1].length == 0 || (e[0] == 'category' && e[1] == 'category')) {
+        if (
+          e[1] == null ||
+          e[1].length == 0 ||
+          (e[0] == 'category' && e[1] == 'category')
+        ) {
           this.errors.push(e[0]);
         }
       });
@@ -136,7 +159,7 @@ export default {
           coverPictureUrl: this.pet.coverPictureUrl,
           summary: this.pet.summary,
         })
-        .then((res) => console.log(res))
+        .then((res) => this.$router.push('/pets'))
         .catch((err) => console.log(err));
     },
     getPet(id) {

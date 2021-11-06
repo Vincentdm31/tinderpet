@@ -1,10 +1,13 @@
 <template>
-  <div style="height: 92vh">
+  <div class="gradient" style="height: 94vh; padding-top: 4rem">
     <div
-      class="d-flex fx-center v-center container fx-col h100"
+      class="d-flex fx-center v-center container fx-col h100 txt-white"
       style="width: 30%"
     >
-      <p v-if="errors.length" class="txt-red">
+    <img src="../assets/flamme.png" class="responsive-media mb-5 d-block mx-auto" style="max-width:20%;" />
+
+    <h1 class="title">Création_</h1>
+      <p v-if="errors.length" class="txt-white">
     <b>Please correct the following error(s):</b>
     <ul>
       <li v-for="error in errors" :key="error.id">{{ error }}</li>
@@ -51,7 +54,7 @@
       <div class="form-field d-flex fx-row">
         <select
           required
-          class="form-control rounded-1"
+          class="form-control select rounded-1"
           placeholder="Category"
           v-model="category"
         >
