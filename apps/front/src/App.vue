@@ -3,8 +3,14 @@
     <div class="navbar-fixed">
       <nav class="navbar shadow-1 white">
         <div class="navbar-menu mx-auto txt-grey txt-light-4 font-s5">
+          <router-link class="navbar-link" to="/pets"
+            ><i class="fas fa-paw txt-amaranth"
+          /></router-link>
           <router-link class="navbar-link" to="/"
             ><i class="fas fa-home txt-amaranth"
+          /></router-link>
+          <router-link class="navbar-link" to="/pets/likes"
+            ><i class="fas fa-heart txt-amaranth"
           /></router-link>
         </div>
       </nav>

@@ -8,6 +8,7 @@ export default new Vuex.Store({
     data: [],
     isLoading: false,
     petType: [],
+    likes: [],
   },
   actions: {
     getAll({ state }) {
@@ -64,6 +65,22 @@ export default new Vuex.Store({
       ) {
         return obj.id !== id;
       });
+    },
+    likePet({ state }, pet) {
+      const elem = state.data.find(
+        (el: Record<string, unknown>) => el.id == pet.id
+      );
+      state.likes.push(elem);
+      state.data.splice(state.data.indexOf(elem), 1);
+    },
+    unlikePet({ state }, id) {
+      console.log(id);
+      const elem = state.likes.find(
+        (el: Record<string, unknown>) => el.id == id
+      );
+      state.data.push(elem);
+      state.likes.splice(state.likes.indexOf(elem), 1);
+      console.log('likes', state.likes);
     },
   },
 });

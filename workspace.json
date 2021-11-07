@@ -83,7 +83,7 @@
             "devServer": {
               "proxy": {
                 "^/api": {
-                  "target": "http://192.168.1.10:3333",
+                  "target": "http://192.168.1.13:3333",
                   "changeOrigin": true,
                   "secure": false
                 }

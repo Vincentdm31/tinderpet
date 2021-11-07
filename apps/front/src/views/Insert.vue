@@ -31,6 +31,8 @@
       </div>
       <VueCtkDateTimePicker
         :label="'Birthdate'"
+        :color="'#EC4A79'"
+        :button-color="'#EC4A79'"
         v-model="birthDate"
         :format="'YYYY-MM-DD hh:mm'"
         style="background: transparent !important"
