@@ -22,12 +22,12 @@
       </button>
       <!-- Here is the fab-menu -->
       <div class="fab-menu">
-        <router-link class="white btn circle mb-3 fab-item" to="/pets/insert"
+        <router-link class="white btn circle fab-item" to="/pets/insert"
           ><i class="fas fa-plus txt-red"
         /></router-link>
         <button
           v-show="data.length != 0"
-          class="btn circle mb-3 fab-item red dark-2"
+          class="btn circle fab-item red dark-2"
           @click="deleteAllPets()"
         >
           <i class="fas fa-trash txt-white" />
@@ -115,5 +115,11 @@ body {
 
 .gradient-bg {
   background-image: linear-gradient(151deg, #ec4a79 26%, #fe794b 100%);
+}
+
+.fab-item {
+  position: absolute;
+  margin-bottom: 1rem;
+  bottom: 4rem;
 }
 </style>
