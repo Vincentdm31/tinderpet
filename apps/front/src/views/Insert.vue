@@ -88,7 +88,7 @@ export default {
       firstName: '',
       lastName: '',
       birthDate: '2021-11-02 10:10',
-      avatarPictureUrl: 'https://picsum.photos/350/250',
+      avatarPictureUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9a/Trollface_non-free.png',
       summary: '',
       category: 'category',
       errors: []

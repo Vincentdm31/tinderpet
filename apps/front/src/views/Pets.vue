@@ -1,9 +1,9 @@
 <template>
-  <div class="gradient app">
+  <div class="gradient h100">
     <div v-if="data.length == 0" class="d-flex fx-center vcenter h100">
       <p class="txt-white">No pets available</p>
     </div>
-    <div class="">
+    <div class="h100">
       <div v-if="isLoading">
         <div class="spinner txt-blue">
           <svg viewBox="25 25 50 50">
@@ -18,7 +18,7 @@
           </svg>
         </div>
       </div>
-      <div class="container grix xs1 sm2 md3 lg4 gutter-xs7 mt-5" v-else>
+      <div class="container grix xs1 sm2 md3 lg4 gutter-xs7" v-else>
         <div class="col-lg4 col-md3 col-sm2">
           <img
             src="../assets/flamme.png"
@@ -83,16 +83,17 @@
           @dragenter.prevent
           @dragover.prevent
           @drop.prevent
-          class="green"
-          style="height: 100%; width: 5%; position: absolute; top: 0; left: 0"
+          class="drag"
+          style="height: 100%; width: 10%; position: absolute; top: 0; left: 0"
         ></div>
         <div
           @drop="onDrop($event, 1)"
+          :hover="test"
           @dragenter.prevent
           @dragover.prevent
           @drop.prevent
-          class="red"
-          style="height: 100%; width: 5%; position: absolute; top: 0; right: 0"
+          class="drag"
+          style="height: 100%; width: 10%; position: absolute; top: 0; right: 0"
         ></div>
       </div>
     </div>
@@ -145,6 +146,9 @@ export default Vue.extend({
           console.error(err);
         });
     },
+    test() {
+      console.log('toto');
+    },
   },
 });
 </script>
@@ -153,5 +157,11 @@ export default Vue.extend({
   position: fixed;
   bottom: 3%;
   right: 3%;
+}
+
+.drag {
+  &.active {
+    background: rgba(70, 70, 70, 0.274);
+  }
 }
 </style>

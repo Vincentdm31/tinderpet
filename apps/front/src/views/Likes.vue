@@ -1,9 +1,9 @@
 <template lang="">
-  <div class="gradient app">
+  <div class="gradient h100">
     <div>
       <img
         src="../assets/flamme.png"
-        class="responsive-media my-5 d-block mx-auto"
+        class="responsive-media pt-5 mb-5 d-block mx-auto"
         style="max-width: 5%"
       />
 

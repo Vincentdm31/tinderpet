@@ -50,7 +50,7 @@ export default new Vuex.Store({
           pet,
         })
         .then((res) => {
-          console.log('ok', res);
+          state.data.push(res.data);
         })
         .catch((err) => {
           console.error(err.toJSON());

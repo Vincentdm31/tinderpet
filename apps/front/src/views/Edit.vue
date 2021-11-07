@@ -20,69 +20,74 @@
           {{ error }}
         </li>
       </ul>
-      <div class="form-field inline">
-        <input
-          type="text"
-          id="name"
-          class="form-control rounded-1"
-          :placeholder="pet.firstName"
-          v-model="pet.firstName"
-        />
-      </div>
-      <div class="form-field inline">
-        <input
-          type="text"
-          id="name"
-          class="form-control rounded-1"
-          :placeholder="pet.lastName"
-          v-model="pet.lastName"
-        />
-      </div>
-      <VueCtkDateTimePicker
-        :label="pet.birthDate"
-        :color="'#EC4A79'"
-        :button-color="'#EC4A79'"
-        v-model="pet.birthDate"
-        :format="'YYYY-MM-DD hh:mm'"
-      />
-      <div class="form-field inline">
-        <input
-          type="text"
-          id="name"
-          class="form-control rounded-1"
-          :placeholder="pet.summary"
-          v-model="pet.summary"
-        />
-      </div>
-      <div class="form-field inline">
-        <input
-          type="text"
-          id="name"
-          class="form-control rounded-1"
-          :placeholder="pet.avatarPictureUrl"
-          v-model="pet.avatarPictureUrl"
-        />
-      </div>
-      <div class="form-field inline">
-        <input
-          type="text"
-          id="name"
-          class="form-control rounded-1"
-          :placeholder="pet.coverPictureUrl"
-          v-model="pet.coverPictureUrl"
-        />
-      </div>
-      <div class="form-field d-flex fx-row">
-        <select
-          required
-          class="form-control rounded-1 select"
-          placeholder="Category"
-          v-model="pet.type"
-        >
-          <option :name="i" v-for="(type, i) in petType" :key="type.id">
-            {{ type }}
-          </option>
-        </select>
+      <div class="grey light-4 p-5 rounded-4 txt-white">
+        <div class="form-field inline gradient-bg rounded-4">
+          <input
+            type="text"
+            id="name"
+            class="form-control rounded-4"
+            :placeholder="pet.firstName"
+            v-model="pet.firstName"
+          />
+        </div>
+        <div class="form-field inline gradient-bg rounded-4 rounded-4">
+          <input
+            type="text"
+            id="name"
+            class="form-control rounded-4"
+            :placeholder="pet.lastName"
+            v-model="pet.lastName"
+          />
+        </div>
+        <div class="rounded-4 overflow-hidden">
+          <VueCtkDateTimePicker
+            :label="pet.birthDate"
+            :color="'#EC4A79'"
+            :button-color="'#EC4A79'"
+            v-model="pet.birthDate"
+            :format="'YYYY-MM-DD hh:mm'"
+            class="rounded-4"
+          />
+        </div>
+        <div class="form-field inline gradient-bg rounded-4">
+          <input
+            type="text"
+            id="name"
+            class="form-control rounded-4"
+            :placeholder="pet.summary"
+            v-model="pet.summary"
+          />
+        </div>
+        <div class="form-field inline gradient-bg rounded-4">
+          <input
+            type="text"
+            id="name"
+            class="form-control rounded-4"
+            :placeholder="pet.avatarPictureUrl"
+            v-model="pet.avatarPictureUrl"
+          />
+        </div>
+        <div class="form-field inline gradient-bg rounded-4">
+          <input
+            type="text"
+            id="name"
+            class="form-control rounded-4"
+            :placeholder="pet.coverPictureUrl"
+            v-model="pet.coverPictureUrl"
+          />
+        </div>
+        <div class="form-field rounded-4 gradient-bg">
+          <select
+            required
+            class="form-control rounded-4 select"
+            placeholder="Category"
+            v-model="pet.type"
+          >
+            <option :name="i" v-for="(type, i) in petType" :key="type.id">
+              {{ type }}
+            </option>
+          </select>
+        </div>
       </div>
       <button
         class="

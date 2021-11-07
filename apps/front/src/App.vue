@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div id="app" class="h100">
     <div class="navbar-fixed">
       <nav class="navbar shadow-1 white">
         <div class="navbar-menu mx-auto txt-grey txt-light-4 font-s5">
@@ -71,6 +71,7 @@ export default Vue.extend({
 <style lang="scss">
 .gradient {
   background-image: linear-gradient(151deg, #ec4a79 26%, #fe794b 100%);
+  padding-top: 3.5rem;
 }
 body {
   --ax-navbar-height: 50px !important;
@@ -78,9 +79,8 @@ body {
   font-family: 'Quicksand';
 }
 .field-input {
-  background: transparent !important;
+  background: linear-gradient(151deg, #ec4a79 26%, #fe794b 100%);
   color: white;
-  border: 1px solid #bbb8b8 !important;
 }
 .field-label {
   color: white !important;
@@ -91,7 +91,7 @@ body {
     color: rgb(255, 255, 255) !important;
   }
   & option {
-    background: #eeeeee !important;
+    background: linear-gradient(151deg, #ec4a79 26%, #fe794b 100%);
     color: #fe794b;
   }
 }
@@ -106,7 +106,14 @@ body {
   margin-bottom: 10%;
 }
 
-.app {
-  height: calc(100vh - 3.5rem);
+.navbar-fixed {
+  position: absolute !important;
+  .navbar {
+    position: absolute !important;
+  }
+}
+
+.gradient-bg {
+  background-image: linear-gradient(151deg, #ec4a79 26%, #fe794b 100%);
 }
 </style>

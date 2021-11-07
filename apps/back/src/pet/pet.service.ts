@@ -29,7 +29,7 @@ export class PetService {
         coverPictureUrl: pet.avatarPictureUrl,
         summary: pet.summary,
       })
-      .then((item) => console.log('Pet inserted'))
+      .then((item) => item.data)
       .catch((err) => console.log('FDP DERREUR'));
   }
   async editPet(pet) {
