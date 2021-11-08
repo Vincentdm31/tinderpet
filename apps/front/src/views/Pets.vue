@@ -1,11 +1,11 @@
 <template>
   <div class="gradient h100">
-    <div v-if="data.length == 0" class="d-flex fx-center vcenter h100">
+    <div v-if="data.length == 0" class="d-flex fx-center vcenter">
       <p class="txt-white">No pets available</p>
     </div>
-    <div class="h100">
+    <div class="h100 d-flex fx-center vcenter">
       <div v-if="isLoading">
-        <div class="spinner txt-blue">
+        <div class="spinner txt-white font-s12">
           <svg viewBox="25 25 50 50">
             <circle
               class="spinner-path"
@@ -78,24 +78,29 @@
             </button>
           </div>
         </div>
-        <div
-          @drop="onDrop($event, 0)"
-          @dragenter.prevent
-          @dragover.prevent
-          @drop.prevent
-          class="drag"
-          style="height: 100%; width: 10%; position: absolute; top: 0; left: 0"
-        ></div>
-        <div
-          @drop="onDrop($event, 1)"
-          :hover="test"
-          @dragenter.prevent
-          @dragover.prevent
-          @drop.prevent
-          class="drag"
-          style="height: 100%; width: 10%; position: absolute; top: 0; right: 0"
-        ></div>
       </div>
+    </div>
+    <div
+      @drop="onDrop($event, 0)"
+      @dragenter.prevent
+      @dragover.prevent
+      @drop.prevent
+      @dragenter="addHover($event)"
+      @dragleave="rmHover($event)"
+      class="drag left d-flex vcenter fx-center"
+    >
+      <i class="fas fa-sad-cry txt-white font-s12"></i>
+    </div>
+    <div
+      @drop="onDrop($event, 1)"
+      @dragenter.prevent
+      @dragover.prevent
+      @drop.prevent
+      @dragenter="addHover($event)"
+      @dragleave="rmHover($event)"
+      class="drag right d-flex vcenter fx-center"
+    >
+      <i class="fas fa-heart txt-white font-s12" />
     </div>
   </div>
 </template>
@@ -146,8 +151,11 @@ export default Vue.extend({
           console.error(err);
         });
     },
-    test() {
-      console.log('toto');
+    addHover(e) {
+      e.target.classList.add('active');
+    },
+    rmHover(e) {
+      e.target.classList.remove('active');
     },
   },
 });
@@ -160,8 +168,25 @@ export default Vue.extend({
 }
 
 .drag {
+  opacity: 0;
+  transition: opacity ease 0.3s;
   &.active {
-    background: rgba(70, 70, 70, 0.274);
+    background: rgba(255, 255, 255, 0.212);
+    opacity: 1;
+  }
+  &.left {
+    height: 100%;
+    width: 10%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &.right {
+    height: 100%;
+    width: 10%;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 </style>
