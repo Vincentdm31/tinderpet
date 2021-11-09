@@ -131,7 +131,7 @@ export default {
     ...mapState(['petType']),
   },
   methods: {
-    ...mapActions(['getType']),
+    ...mapActions(['getType', 'edit']),
     checkForm(id) {
       this.errors = [];
       console.log(this.pet);
@@ -153,22 +153,7 @@ export default {
       }
     },
     editPet() {
-      return axios
-        .post(`/api/pet/editPet`, {
-          id: this.pet.id,
-          firstName: this.pet.firstName,
-          lastName: this.pet.lastName,
-          birthDate: this.pet.birthDate,
-          type: this.pet.type,
-          avatarPictureUrl: this.pet.avatarPictureUrl,
-          coverPictureUrl: this.pet.coverPictureUrl,
-          summary: this.pet.summary,
-        })
-        .then((res) => {
-          console.log(res);
-          this.$router.push('/pets');
-        })
-        .catch((err) => console.log(err));
+      this.edit(this.pet);
     },
     getPet(id) {
       return axios

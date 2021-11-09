@@ -1,8 +1,5 @@
 <template>
   <div class="gradient h100">
-    <div v-if="data.length == 0" class="d-flex fx-center vcenter">
-      <p class="txt-white">No pets available</p>
-    </div>
     <div class="h100 d-flex fx-center vcenter">
       <div v-if="isLoading">
         <div class="spinner txt-white font-s12">
@@ -17,6 +14,9 @@
             />
           </svg>
         </div>
+      </div>
+      <div v-if="data.length == 0" class="d-flex fx-center vcenter">
+        <p class="txt-white">No pets available</p>
       </div>
       <div class="container grix xs1 sm2 md3 lg4 gutter-xs7" v-else>
         <div class="col-lg4 col-md3 col-sm2">
@@ -122,6 +122,7 @@ export default Vue.extend({
       event.dataTransfer.setData('itemId', item.id);
     },
     onDrop(event, zone) {
+      event.target.classList.remove('active');
       const itemID = event.dataTransfer.getData('itemID');
       let elem = this.data.find((el) => el.id == itemID);
       zone == 1 ? this.likePet(elem) : this.deletePet(itemID);

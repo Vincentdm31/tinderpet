@@ -1,9 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { IUser } from '@tinderpet/user';
+
 // import router from '../router/index';
 Vue.use(Vuex);
+import axios from 'axios';
+import router from '../router';
 
-export default new Vuex.Store({
+export interface State {
+  data: Array<IUser>;
+  isLoading: boolean;
+  petType: Array<string>;
+  likes: Array<IUser>;
+}
+
+export default new Vuex.Store<State>({
   state: {
     data: [],
     isLoading: false,
@@ -24,6 +35,18 @@ export default new Vuex.Store({
         .finally(() => {
           this.state.isLoading = false;
         });
+    },
+    edit({ state }, pet) {
+      return axios
+        .post(`/api/pet/editPet`, pet)
+        .then((res) => {
+          const item: number = state.data.findIndex(
+            (el) => el.id == res.data.id
+          );
+          state.data[item] = pet;
+          router.push('/pets');
+        })
+        .catch((err) => console.log(err));
     },
     getType({ state }) {
       state.isLoading = true;
@@ -60,24 +83,20 @@ export default new Vuex.Store({
         });
     },
     delPet({ state }, id) {
-      state.data = this.state.data.filter(function (
-        obj: Record<string, unknown>
-      ) {
+      state.data = this.state.data.filter((obj) => {
         return obj.id !== id;
       });
     },
     likePet({ state }, pet) {
-      const elem = state.data.find(
-        (el: Record<string, unknown>) => el.id == pet.id
-      );
+      const elemId = state.data.findIndex((el) => el.id == pet.id);
+      const elem = state.data[elemId];
       state.likes.push(elem);
       state.data.splice(state.data.indexOf(elem), 1);
     },
     unlikePet({ state }, id) {
       console.log(id);
-      const elem = state.likes.find(
-        (el: Record<string, unknown>) => el.id == id
-      );
+      const elemId = state.likes.findIndex((el) => el.id == id);
+      const elem = state.likes[elemId];
       state.data.push(elem);
       state.likes.splice(state.likes.indexOf(elem), 1);
       console.log('likes', state.likes);

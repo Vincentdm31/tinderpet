@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "...": {
+      "tags": []
+    },
     "back": {
       "tags": []
     },
@@ -36,6 +39,9 @@
     "front-e2e": {
       "tags": [],
       "implicitDependencies": ["front"]
+    },
+    "user": {
+      "tags": []
     }
   }
 }

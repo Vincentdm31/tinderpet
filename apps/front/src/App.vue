@@ -57,11 +57,11 @@ export default Vue.extend({
       return Vue.axios
         .get('/api/pet/delete/all')
         .then((res) => {
-          console.log('ok', res);
+          console.log(res);
           this.getAll();
         })
         .catch((err) => {
-          console.error(err);
+          console.error('erree');
         });
     },
   },
@@ -103,7 +103,7 @@ body {
 .title {
   text-transform: uppercase;
   letter-spacing: 30px;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 .navbar-fixed {

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import axios, { Axios } from 'axios';
-
+import { IUser } from '@tinderpet/user';
+import { IUserId } from '@tinderpet/user';
 @Injectable()
 export class PetService {
   api_url = 'https://meetapet-api.herokuapp.com/api/';
@@ -14,7 +15,7 @@ export class PetService {
       .then((pet) => pet.data)
       .catch((err) => console.log(err));
   }
-  async getPetType(): Promise<any> {
+  async getPetType(): Promise<Array<string>> {
     return await axios.get(this.api_url + 'pet-types').then((pet) => pet.data);
   }
   async newPet(data) {
@@ -29,20 +30,20 @@ export class PetService {
         coverPictureUrl: pet.avatarPictureUrl,
         summary: pet.summary,
       })
-      .then((item) => item.data)
-      .catch((err) => console.log('FDP DERREUR'));
+      .then((item) => console.log('Pet inserted', item.data))
+      .catch((err) => console.error('Error during inserting new pet', err));
   }
   async editPet(pet) {
     return await axios
       .put(`${this.api_url}pets/${pet.id}`, pet)
-      .then((res) => console.log('Pet edited'))
+      .then((pet) => pet.data)
       .catch((err) => console.log('ERR', err));
   }
-  async deletePet(id) {
+  async deletePet(id: number) {
     return await axios
       .delete(`${this.api_url}pets/${id}`)
       .then((res) => console.log('Pet deleted'))
-      .catch((err) => console.log('ERR', err));
+      .catch((err) => console.error('Error during pet deletion'));
   }
   async getPetById(id) {
     return await axios.get(`${this.api_url}pets/${id}`).then((pet) => pet.data);

@@ -1,6 +1,27 @@
 {
   "version": 2,
   "projects": {
+    "...": {
+      "root": "libs/...",
+      "sourceRoot": "libs/.../src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/.../**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/..."],
+          "options": {
+            "jestConfig": "libs/.../jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "back": {
       "root": "apps/back",
       "sourceRoot": "apps/back/src",
@@ -135,6 +156,27 @@
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/front-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "user": {
+      "root": "libs/user",
+      "sourceRoot": "libs/user/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/user/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/user"],
+          "options": {
+            "jestConfig": "libs/user/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
