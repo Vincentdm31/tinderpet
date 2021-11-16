@@ -89,7 +89,7 @@ export default {
       firstName: '',
       lastName: '',
       birthDate: '2021-11-02 10:10',
-      avatarPictureUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9a/Trollface_non-free.png',
+      avatarPictureUrl: 'https://vinsetvintage.fr/wp-content/uploads/2020/05/MG_ZS_EV-34-avant.jpg',
       summary: '',
       category: 'category',
       errors: []

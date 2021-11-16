@@ -39,7 +39,7 @@
             type="button"
             class="btn rounded-1 gradient txt-white shadow-3 mr-3"
             v-for="pageNumber in pages.slice(page - 1, page + 5)"
-            :key="pageNumber"
+            :key="pageNumber.id"
             @click="page = pageNumber"
           >
             {{ pageNumber }}
@@ -57,7 +57,7 @@
         <div class="container grix xs1 sm2 md3 lg4 gutter-xs7">
           <div
             draggable="true"
-            @dragstart="startDrag($event, item)"
+            @dragstart="startDrag($event, pet)"
             class="
               card
               hoverable-2
@@ -153,10 +153,10 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions(['delPet', 'likePet']),
-    startDrag(event, item) {
+    startDrag(event, pet) {
       event.dataTransfer.dropEffect = 'all';
       event.dataTransfer.effectAllowed = 'all';
-      event.dataTransfer.setData('itemId', item.id);
+      event.dataTransfer.setData('itemId', pet.id);
     },
     onDrop(event, zone) {
       event.target.classList.remove('active');
@@ -196,6 +196,7 @@ export default Vue.extend({
     },
     //
     setPages() {
+      this.pages = [];
       let numberOfPages = Math.ceil(this.data.length / this.perPage);
       for (let index = 1; index <= numberOfPages; index++) {
         this.pages.push(index);
@@ -211,6 +212,7 @@ export default Vue.extend({
   },
   watch: {
     data() {
+      console.log('data', this.data);
       this.setPages();
     },
   },
