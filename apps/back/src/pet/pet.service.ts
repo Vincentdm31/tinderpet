@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import axios, { Axios } from 'axios';
-import { IUser } from '@tinderpet/user';
-import { IUserId } from '@tinderpet/user';
+import { IAnimal } from '@tinderpet/user';
 @Injectable()
 export class PetService {
   api_url = 'https://meetapet-api.herokuapp.com/api/';
@@ -33,19 +32,19 @@ export class PetService {
       .then((item) => console.log('Pet inserted', item.data))
       .catch((err) => console.error('Error during inserting new pet', err));
   }
-  async editPet(pet) {
+  async editPet(pet: IAnimal) {
     return await axios
       .put(`${this.api_url}pets/${pet.id}`, pet)
       .then((pet) => pet.data)
       .catch((err) => console.log('ERR', err));
   }
-  async deletePet(id: number) {
+  async deletePet(id: string) {
     return await axios
       .delete(`${this.api_url}pets/${id}`)
-      .then((res) => console.log('Pet deleted'))
-      .catch((err) => console.error('Error during pet deletion'));
+      .then((res) => console.log('Pet deleted', res))
+      .catch((err) => console.error('Error during pet deletion', err));
   }
-  async getPetById(id) {
+  async getPetById(id: string) {
     return await axios.get(`${this.api_url}pets/${id}`).then((pet) => pet.data);
   }
   async deleteAllPets() {
@@ -56,7 +55,7 @@ export class PetService {
         },
       })
       .then((pet) => {
-        pet.data.forEach((el) => {
+        pet.data.forEach((el: IAnimal) => {
           this.deletePet(el.id);
         });
       })

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Param, Delete } from '@nestjs/common';
 import { PetService } from './pet.service';
-import { IUser } from '@tinderpet/user';
+import { IAnimal } from '@tinderpet/user';
 
 @Controller('pet')
 export class PetController {
@@ -24,11 +24,11 @@ export class PetController {
   }
 
   @Post('new')
-  newPet(@Body() pet: IUser) {
+  newPet(@Body() pet: IAnimal) {
     return this.petService.newPet(pet);
   }
   @Post('editPet')
-  editPet(@Body() pet: IUser) {
+  editPet(@Body() pet: IAnimal) {
     return this.petService.editPet(pet);
   }
   @Delete(':id')

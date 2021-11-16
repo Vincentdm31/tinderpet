@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IAnimal {
   id: string;
   firstName: string;
   lastName: string;
@@ -6,8 +6,4 @@ export interface IUser {
   coverPictureUrl: string;
   summary: string;
   type: string;
-}
-
-export interface IUserId {
-  id: Record<string, unknown>;
 }

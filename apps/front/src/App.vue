@@ -61,7 +61,7 @@ export default Vue.extend({
           this.getAll();
         })
         .catch((err) => {
-          console.error('erree');
+          console.error('erree'), err;
         });
     },
   },
@@ -120,6 +120,6 @@ body {
 .fab-item {
   position: absolute;
   margin-bottom: 1rem;
-  bottom: 4rem;
+  bottom: 2rem;
 }
 </style>

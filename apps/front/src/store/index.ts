@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { IUser } from '@tinderpet/user';
+import { IAnimal } from '@tinderpet/user';
 
 // import router from '../router/index';
 Vue.use(Vuex);
@@ -8,10 +8,10 @@ import axios from 'axios';
 import router from '../router';
 
 export interface State {
-  data: Array<IUser>;
+  data: Array<IAnimal>;
   isLoading: boolean;
   petType: Array<string>;
-  likes: Array<IUser>;
+  likes: Array<IAnimal>;
 }
 
 export default new Vuex.Store<State>({
