@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import axios, { Axios } from 'axios';
 import { IAnimal } from '@tinderpet/user';
+import { IAnimalId } from '@tinderpet/user';
 @Injectable()
 export class PetService {
   api_url = 'https://meetapet-api.herokuapp.com/api/';
@@ -38,9 +39,10 @@ export class PetService {
       .then((pet) => pet.data)
       .catch((err) => console.log('ERR', err));
   }
-  async deletePet(id: string) {
+  async deletePet(id) {
+    console.log(id);
     return await axios
-      .delete(`${this.api_url}pets/${id}`)
+      .delete(`${this.api_url}pets/${id.id}`)
       .then((res) => console.log('Pet deleted', res))
       .catch((err) => console.error('Error during pet deletion', err));
   }

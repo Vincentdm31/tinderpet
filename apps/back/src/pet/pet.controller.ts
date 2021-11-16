@@ -32,7 +32,7 @@ export class PetController {
     return this.petService.editPet(pet);
   }
   @Delete(':id')
-  deletePet(@Param() pet) {
-    return this.petService.deletePet(pet);
+  deletePet(@Param() id) {
+    return this.petService.deletePet(id);
   }
 }

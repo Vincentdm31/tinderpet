@@ -7,3 +7,7 @@ export interface IAnimal {
   summary: string;
   type: string;
 }
+
+export interface IAnimalId {
+  id: string;
+}
