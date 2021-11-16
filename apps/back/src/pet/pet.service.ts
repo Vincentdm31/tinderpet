@@ -44,7 +44,7 @@ export class PetService {
     return await axios
       .delete(`${this.api_url}pets/${id.id}`)
       .then((res) => console.log('Pet deleted', res))
-      .catch((err) => console.error('Error during pet deletion', err));
+      .catch((err) => console.error('Error during pet deletion'));
   }
   async getPetById(id: string) {
     return await axios.get(`${this.api_url}pets/${id}`).then((pet) => pet.data);
@@ -58,7 +58,7 @@ export class PetService {
       })
       .then((pet) => {
         pet.data.forEach((el: IAnimal) => {
-          this.deletePet(el.id);
+          this.deletePet(el);
         });
       })
       .catch((err) => console.log(err));
